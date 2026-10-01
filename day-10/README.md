@@ -1,16 +1,209 @@
-# React + Vite
+# React Day 10 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📚 What I Learned
 
-Currently, two official plugins are available:
+Today I learned **Form Handling in React** and how to manage form input values using the `useState` hook.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Topics Covered
 
-## React Compiler
+- React Forms
+- `useState`
+- Controlled Inputs
+- `value`
+- `onChange`
+- `onSubmit`
+- `event.target.value`
+- `event.preventDefault()`
+- Form submission handling
+- Updating state from input values
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📝 Form Handling in React
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+In React, we can control form inputs using state.
+
+Example:
+
+```jsx
+const [title, setTitle] = useState("");
+```
+
+Here:
+
+- `title` stores the current input value.
+- `setTitle` updates the input value.
+
+---
+
+## 🎯 Controlled Input
+
+```jsx
+<input
+  type="text"
+  placeholder="Enter your name"
+  value={title}
+  onChange={(e) => {
+    setTitle(e.target.value);
+  }}
+/>
+```
+
+### How it works
+
+```text
+User types
+    ↓
+onChange event
+    ↓
+e.target.value
+    ↓
+setTitle()
+    ↓
+State updates
+    ↓
+Input value updates
+```
+
+---
+
+## 🚫 preventDefault()
+
+Normally, submitting an HTML form reloads the page.
+
+In React, we can prevent this using:
+
+```jsx
+e.preventDefault();
+```
+
+This allows us to handle the form submission without reloading the page.
+
+---
+
+## 📤 Form Submission
+
+```jsx
+const submitHandler = (e) => {
+  e.preventDefault();
+
+  console.log("Form Submitted by", title);
+};
+```
+
+Then we can attach it to the form:
+
+```jsx
+<form onSubmit={submitHandler}>
+```
+
+---
+
+## 💻 Practice Code
+
+```jsx
+import { useState } from "react";
+
+const App = () => {
+  const [title, setTitle] = useState("");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    console.log("Form Submitted by", title);
+  };
+
+  return (
+    <div>
+      <form onSubmit={submitHandler}>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          value={title}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+        />
+
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+};
+
+export default App;
+```
+
+---
+
+## 🧠 Important Learning
+
+### `value`
+
+```jsx
+value={title}
+```
+
+Connects the input with React state.
+
+### `onChange`
+
+```jsx
+onChange={(e) => setTitle(e.target.value)}
+```
+
+Updates the state whenever the user types something.
+
+### `onSubmit`
+
+```jsx
+<form onSubmit={submitHandler}>
+```
+
+Runs the function when the form is submitted.
+
+### `e.target.value`
+
+Gets the current value entered by the user.
+
+---
+
+## 🎯 Key Concept
+
+React forms can be controlled by keeping the input value inside **state**.
+
+```text
+State → Input
+Input → onChange → State
+```
+
+This creates a **controlled component**.
+
+---
+
+## 📌 Day 10 Summary
+
+Today I learned how to:
+
+- Create forms in React
+- Manage form data using `useState`
+- Create controlled inputs
+- Handle `onChange`
+- Get input values using `event.target.value`
+- Handle form submission using `onSubmit`
+- Prevent page reload using `preventDefault()`
+- Update React state based on user input
+
+---
+
+## 🚀 Next Step
+
+Practice multiple form fields such as:
+
+- Name
+- Email
+- Password
+- Age
+- City
+
+and store all the values in a single state object.
