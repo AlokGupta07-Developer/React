@@ -435,13 +435,3 @@ const response = await axios.get(url);
 const data = response.data;
 ```
 
-## 🚀 Next Step
-
-Next, I can practice:
-
-- POST API
-- DELETE API
-- PUT/PATCH API
-- API error handling
-- Loading state
-- `useEffect()` with API calls
